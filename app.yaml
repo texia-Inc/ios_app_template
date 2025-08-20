@@ -1,0 +1,72 @@
+app_name: "Coin Blaster"
+bundle_id: "com.texia.coinblaster"
+display_name: "Coin Blaster"
+primary_color: "#2D7CF6"
+theme: "dark"
+
+icons:
+  emoji: "🪙"
+  bg: "#101318"
+
+store:
+  subtitle_ja: "角度とパワーでコインを宇宙へ"
+  keywords_ja: ["コイン", "物理", "対戦", "webrtc"]
+  promo_ja: "ドラッグして離すだけ。オンライン対戦で腕試し！"
+  description_ja: "シンプルな操作でコインを宇宙まで飛ばそう！物理エンジンを活用したリアルな挙動で、角度とパワーを調整してコインをできるだけ遠くまで飛ばすゲームです。オンライン対戦機能でフレンドと競争もできます。"
+  
+  subtitle_en: "Blast the coin to space"
+  keywords_en: ["coin", "physics", "pvp", "webrtc"]
+  promo_en: "Drag and release. Test your skills in online battles!"
+  description_en: "Launch coins to space with simple controls! Using a realistic physics engine, adjust angle and power to blast coins as far as possible. Compete with friends in online multiplayer battles."
+
+monetization:
+  ads: true
+  iap:
+    - id: "com.texia.coinblaster.pro"
+      type: "non_consumable"
+      localized_title_ja: "広告解除"
+      localized_title_en: "Remove Ads"
+    - id: "com.texia.coinblaster.coins100"
+      type: "consumable"
+      localized_title_ja: "コイン100枚"
+      localized_title_en: "100 Coins"
+
+analytics:
+  provider: "firebase"
+  firebase_project_id: "coinblaster-12345"
+
+remote_config:
+  difficulty: "normal"
+  ad_interval_sec: 45
+  offer_banner: true
+  max_coins_per_game: 10
+  multiplayer_enabled: true
+
+screenshots:
+  flows: ["home", "battle", "result", "settings"]
+
+admob:
+  app_id_ios: "ca-app-pub-XXXXXXXXXXXXXXX~YYYYYYYYYY"
+  banner_ios: "ca-app-pub-XXXXXXXXXXXXXXX/BBBBBBBBBB"
+  interstitial_ios: "ca-app-pub-XXXXXXXXXXXXXXX/IIIIIIIIII"
+  rewarded_ios: "ca-app-pub-XXXXXXXXXXXXXXX/RRRRRRRRRR"
+  frequency:
+    interstitial_every_sec: 45
+    show_after_actions: 3
+    rewarded_cooldown_sec: 300
+
+features:
+  - name: "Physics Engine"
+    description: "Realistic coin physics simulation"
+  - name: "Online Multiplayer"
+    description: "Real-time battles with WebRTC"
+  - name: "Customizable Coins"
+    description: "Unlock different coin designs"
+  - name: "Leaderboards"
+    description: "Global and friends rankings"
+
+# App Store optimization
+aso:
+  rating_request_after_games: 5
+  review_prompt_delay_days: 3
+  feature_update_notification: true

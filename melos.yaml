@@ -1,0 +1,24 @@
+name: ios_app_template
+repository: https://github.com/texia/ios_app_template
+
+packages:
+  - apps/*
+  - packages/*
+
+command:
+  version:
+    updateGitTagRefs: true
+    workspaceChangelog: false
+  bootstrap:
+    dependencies:
+      google_mobile_ads: ^5.0.0
+      firebase_core: ^3.0.0
+      in_app_purchase: ^3.2.0
+      app_tracking_transparency: ^2.0.4
+      user_messaging_platform: ^3.0.0
+      app_review: ^2.0.9
+
+scripts:
+  format: dart format .
+  analyze: dart analyze .
+  test: flutter test

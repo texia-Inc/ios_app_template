@@ -1,0 +1,10 @@
+app_identifier ENV["APP_BUNDLE_ID"]
+apple_id ENV["APPLE_ID_EMAIL"]
+itc_team_id ENV["ASC_TEAM_ID"]
+team_id ENV["DEVPORTAL_TEAM_ID"]
+
+# For multiple apps, you can override these per app
+# app_identifier("com.texia.coinblaster")
+# apple_id("developer@texia.com")
+# itc_team_id("123456789")
+# team_id("ABCDEF1234")

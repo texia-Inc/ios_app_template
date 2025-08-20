@@ -1,0 +1,71 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Increment build number"
+  lane :bump do
+    increment_build_number(xcodeproj: "ios/Runner.xcodeproj")
+  end
+
+  desc "Run UI tests & take screenshots"
+  lane :screenshots do
+    snapshot
+  end
+
+  desc "Build IPA and upload to TestFlight"
+  lane :beta do |options|
+    app_dir = options[:app_dir] || "."
+    
+    # Change to app directory if specified
+    if app_dir != "."
+      Dir.chdir(app_dir)
+    end
+    
+    # Clean and build
+    sh("flutter clean")
+    sh("flutter pub get")
+    
+    # Increment build number
+    increment_build_number(xcodeproj: "ios/Runner.xcodeproj")
+    
+    # Build IPA
+    sh("flutter build ipa --release")
+    
+    # Upload to TestFlight
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      skip_submission: true
+    )
+  end
+
+  desc "Submit to App Store (manual review)"
+  lane :release do |options|
+    app_dir = options[:app_dir] || "."
+    
+    # Change to app directory if specified
+    if app_dir != "."
+      Dir.chdir(app_dir)
+    end
+    
+    deliver(
+      submit_for_review: false,
+      force: true,
+      metadata_path: "../fastlane/metadata",
+      screenshots_path: "../fastlane/screenshots"
+    )
+  end
+
+  desc "Generate and upload metadata"
+  lane :metadata do |options|
+    config_file = options[:config] || "app.yaml"
+    
+    # Generate metadata from config
+    sh("node ../tools/gen_metadata.ts #{config_file} metadata")
+    
+    # Upload metadata without binary
+    deliver(
+      skip_binary_upload: true,
+      force: true,
+      metadata_path: "metadata"
+    )
+  end
+end
